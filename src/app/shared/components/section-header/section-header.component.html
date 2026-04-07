@@ -1,0 +1,17 @@
+<div [class]="align === 'center' ? 'text-center mb-16' : 'text-left mb-16'">
+  <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+    @if (accentWord) {
+      {{ title.split(accentWord)[0] }}<span class="gradient-text">{{ accentWord }}</span>{{ title.split(accentWord)[1] }}
+    } @else {
+      {{ title }}
+    }
+  </h2>
+  @if (subtitle) {
+    <p class="text-text-secondary text-lg max-w-2xl" [class.mx-auto]="align === 'center'">
+      {{ subtitle }}
+    </p>
+  }
+  <div [class]="align === 'center' ? 'flex justify-center mt-4' : 'mt-4'">
+    <div class="w-16 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full"></div>
+  </div>
+</div>

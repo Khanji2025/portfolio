@@ -1,0 +1,42 @@
+<section id="skills" class="py-24 bg-bg-primary">
+  <div class="max-w-6xl mx-auto px-6">
+    <app-section-header
+      title="Technical Skills"
+      accentWord="Skills"
+      subtitle="Technologies and tools I work with on a daily basis"
+    />
+
+    <!-- Category Filter -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      @for (cat of categories; track cat.id) {
+        <button
+          (click)="selectedCategory = cat.id"
+          [class]="selectedCategory === cat.id
+            ? 'px-5 py-2 rounded-full text-sm font-medium bg-accent-cyan text-bg-primary transition-all duration-200'
+            : 'px-5 py-2 rounded-full text-sm font-medium bg-bg-card border border-border-subtle text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 transition-all duration-200'"
+        >
+          {{ cat.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      @for (skill of filteredSkills; track skill.name) {
+        <div class="bg-bg-card border border-border-subtle rounded-xl p-5 hover:border-accent-cyan/30 transition-all duration-300 group">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-text-primary font-medium">{{ skill.name }}</span>
+            <span class="text-text-muted text-sm">{{ skill.level }}%</span>
+          </div>
+          <div class="h-2 bg-bg-secondary rounded-full overflow-hidden">
+            <div
+              class="h-full rounded-full transition-all duration-700"
+              [class]="getBarColor(skill.level)"
+              [style.width.%]="skill.level"
+            ></div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

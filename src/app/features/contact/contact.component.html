@@ -1,0 +1,110 @@
+<section id="contact" class="py-24 bg-bg-secondary">
+  <div class="max-w-6xl mx-auto px-6">
+    <app-section-header
+      title="Get In Touch"
+      accentWord="Touch"
+      subtitle="Have a project in mind? Let's talk about it."
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Contact Info -->
+      <div class="space-y-8">
+        <div class="space-y-4 text-text-secondary">
+          <p class="leading-relaxed">
+            I'm currently available for freelance work and open to exciting full-time opportunities.
+            Whether you have a project in mind or just want to say hello, my inbox is always open!
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          @for (info of contactInfo; track info.label) {
+            <div class="flex items-center gap-4 p-4 bg-bg-card border border-border-subtle rounded-xl hover:border-accent-cyan/30 transition-all duration-200">
+              <span class="text-2xl">{{ info.icon }}</span>
+              <div>
+                <p class="text-text-muted text-xs">{{ info.label }}</p>
+                @if (info.href) {
+                  <a [href]="info.href" class="text-text-primary hover:text-accent-cyan transition-colors font-medium">
+                    {{ info.value }}
+                  </a>
+                } @else {
+                  <p class="text-text-primary font-medium">{{ info.value }}</p>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="flex gap-4">
+          @for (social of socialLinks; track social.label) {
+            <a
+              [href]="social.url"
+              class="flex items-center gap-2 px-4 py-2 bg-bg-card border border-border-subtle rounded-lg text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 transition-all duration-200 text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ social.label }}
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-bg-card border border-border-subtle rounded-2xl p-8">
+        @if (submitted) {
+          <div class="flex flex-col items-center justify-center h-full py-8 text-center animate-fade-in">
+            <div class="w-16 h-16 rounded-full bg-accent-green/10 border border-accent-green/20 flex items-center justify-center text-2xl mb-4">
+              ✅
+            </div>
+            <h3 class="text-text-primary font-bold text-xl mb-2">Message Sent!</h3>
+            <p class="text-text-secondary">Thanks for reaching out. I'll get back to you soon.</p>
+          </div>
+        } @else {
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="space-y-6">
+            <div>
+              <label class="block text-text-secondary text-sm font-medium mb-2" for="name">Your Name</label>
+              <input
+                id="name"
+                name="name"
+                [(ngModel)]="formData.name"
+                required
+                type="text"
+                placeholder="John Doe"
+                class="w-full px-4 py-3 bg-bg-tertiary border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/30 transition-all duration-200"
+              />
+            </div>
+            <div>
+              <label class="block text-text-secondary text-sm font-medium mb-2" for="email">Email Address</label>
+              <input
+                id="email"
+                name="email"
+                [(ngModel)]="formData.email"
+                required
+                type="email"
+                placeholder="john@example.com"
+                class="w-full px-4 py-3 bg-bg-tertiary border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/30 transition-all duration-200"
+              />
+            </div>
+            <div>
+              <label class="block text-text-secondary text-sm font-medium mb-2" for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                [(ngModel)]="formData.message"
+                required
+                rows="5"
+                placeholder="Tell me about your project..."
+                class="w-full px-4 py-3 bg-bg-tertiary border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/30 transition-all duration-200 resize-none"
+              ></textarea>
+            </div>
+            <app-button type="submit" variant="primary" size="lg">
+              Send Message
+              <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+            </app-button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

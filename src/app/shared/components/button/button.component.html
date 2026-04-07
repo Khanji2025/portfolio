@@ -1,0 +1,7 @@
+<a [href]="href || null" [class]="classes"
+   [attr.target]="href ? '_blank' : null"
+   [attr.rel]="href ? 'noopener noreferrer' : null"
+   [attr.role]="href ? null : 'button'"
+   (click)="onElementClick($event)">
+  <ng-content></ng-content>
+</a>

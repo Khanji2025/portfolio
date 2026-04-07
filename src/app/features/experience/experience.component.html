@@ -1,0 +1,58 @@
+<section id="experience" class="py-24 bg-bg-primary">
+  <div class="max-w-6xl mx-auto px-6">
+    <app-section-header
+      title="Work Experience"
+      accentWord="Experience"
+      subtitle="My professional journey and the impact I've made"
+    />
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border-subtle md:-translate-x-1/2"></div>
+
+      <div class="space-y-12">
+        @for (exp of experiences; track exp.id; let i = $index) {
+          <div class="relative md:grid md:grid-cols-2 md:gap-8">
+            <!-- Timeline dot -->
+            <div class="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-accent-cyan border-2 border-bg-primary -translate-x-1/2 mt-6 shadow-glow-cyan z-10"></div>
+
+            <!-- Content positioning -->
+            <div [class]="i % 2 === 0 ? 'md:col-start-1 md:pr-12 pl-12 md:pl-0' : 'md:col-start-2 pl-12 md:pl-8'">
+              <div class="bg-bg-card border border-border-subtle rounded-xl p-6 hover:border-accent-cyan/30 transition-all duration-300">
+                <!-- Header -->
+                <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                  <div>
+                    <h3 class="text-text-primary font-bold text-lg">{{ exp.role }}</h3>
+                    <p class="text-accent-cyan font-medium">{{ exp.company }}</p>
+                  </div>
+                  <div class="flex flex-col items-end gap-1">
+                    <span class="text-text-muted text-sm">{{ exp.startDate }} — {{ exp.endDate ?? 'Present' }}</span>
+                    <app-badge [variant]="getTypeBadgeVariant(exp.type)" [text]="exp.type" />
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <ul class="space-y-2 mb-4">
+                  @for (desc of exp.description; track desc) {
+                    <li class="flex items-start gap-2 text-text-secondary text-sm">
+                      <span class="text-accent-cyan mt-1 shrink-0">&#9658;</span>
+                      {{ desc }}
+                    </li>
+                  }
+                </ul>
+
+                <!-- Technologies -->
+                <div class="flex flex-wrap gap-2">
+                  @for (tech of exp.technologies; track tech) {
+                    <app-badge variant="default" [text]="tech" />
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+<nav [class]="isScrolled ? 'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-bg-primary/90 backdrop-blur-md border-b border-border-subtle' : 'fixed top-0 left-0 right-0 z-50 transition-all duration-300'">
+  <div class="max-w-6xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="text-xl font-bold gradient-text">
+        &lt;Dev /&gt;
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="hidden md:flex items-center gap-8">
+        @for (link of navLinks; track link.href) {
+          <li>
+            <a
+              [href]="link.href"
+              class="nav-link"
+              [class.!text-accent-cyan]="activeSection === link.href.replace('#', '')"
+              (click)="scrollTo(link.href); $event.preventDefault()"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <!-- CTA -->
+      <div class="hidden md:block">
+        <app-button variant="secondary" size="sm" href="mailto:hello@example.com">
+          Hire Me
+        </app-button>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        class="md:hidden text-text-secondary hover:text-accent-cyan transition-colors p-2"
+        (click)="toggleMobileMenu()"
+        aria-label="Toggle menu"
+      >
+        @if (isMobileMenuOpen) {
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        } @else {
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        }
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMobileMenuOpen) {
+      <div class="md:hidden mt-4 pb-4 border-t border-border-subtle animate-fade-in">
+        <ul class="flex flex-col gap-4 mt-4">
+          @for (link of navLinks; track link.href) {
+            <li>
+              <a
+                [href]="link.href"
+                class="nav-link block py-2"
+                (click)="scrollTo(link.href); $event.preventDefault()"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          }
+          <li class="pt-2">
+            <app-button variant="secondary" size="sm" href="mailto:hello@example.com">
+              Hire Me
+            </app-button>
+          </li>
+        </ul>
+      </div>
+    }
+  </div>
+</nav>
