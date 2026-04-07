@@ -37,8 +37,3 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
-
-export interface ButtonVariant {
-  type: 'primary' | 'secondary' | 'ghost' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-}

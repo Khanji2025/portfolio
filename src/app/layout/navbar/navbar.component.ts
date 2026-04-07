@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
   updateActiveSection(): void {
     const sections = ['about', 'skills', 'projects', 'experience', 'contact'];
-    for (const section of sections.reverse()) {
+    for (const section of [...sections].reverse()) {
       const el = document.getElementById(section);
       if (el && window.scrollY >= el.offsetTop - 100) {
         this.activeSection = section;
