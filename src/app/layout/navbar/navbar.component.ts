@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { NAV_LINKS } from '../../core/data/portfolio.data';
@@ -10,7 +10,7 @@ import { NavLink } from '../../core/models/portfolio.models';
   imports: [CommonModule, ButtonComponent],
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit {
   navLinks: NavLink[] = NAV_LINKS;
   isScrolled = false;
   isMobileMenuOpen = false;
@@ -25,8 +25,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.updateActiveSection();
   }
-
-  ngOnDestroy(): void {}
 
   updateActiveSection(): void {
     const sections = ['about', 'skills', 'projects', 'experience', 'contact'];
