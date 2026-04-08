@@ -1,0 +1,47 @@
+<section id="skills" class="py-24 bg-surface section-reveal">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <h2 class="text-sm font-mono text-accent uppercase tracking-widest mb-3">
+        {{ skillsData.sectionLabel }}
+      </h2>
+      <p class="text-xl text-text-secondary">
+        {{ skillsData.sectionSubtitle }}
+      </p>
+      <div class="w-12 h-1 bg-accent mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Skills Categories -->
+    <div class="space-y-12">
+      <div *ngFor="let category of skillsData.categories">
+        <!-- Category Label -->
+        <h3 class="text-sm font-mono text-text-muted uppercase tracking-widest mb-6">
+          {{ category.category }}
+        </h3>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div
+            *ngFor="let skill of category.skills"
+            class="skill-item flex flex-col items-center gap-3 p-4 rounded-lg bg-surface-raised border border-border opacity-0 translate-y-4 transition-all duration-500 ease-out hover:border-accent/30 hover:shadow-glow group cursor-default"
+            style="transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;">
+            
+            <!-- Icon -->
+            <div class="w-12 h-12 transition-transform duration-300 ease-out group-hover:scale-110">
+              <img 
+                [src]="skill.icon" 
+                [alt]="skill.name + ' icon'" 
+                class="w-full h-full object-contain"
+                [style.filter]="(skill.name === 'GitHub' || skill.name === 'Flask') ? 'invert(1) brightness(2)' : 'none'">
+            </div>
+
+            <!-- Label -->
+            <span class="text-sm text-text-secondary font-medium text-center group-hover:text-text-primary transition-colors duration-300">
+              {{ skill.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

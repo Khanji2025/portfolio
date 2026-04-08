@@ -1,0 +1,54 @@
+<section class="min-h-screen flex items-center justify-center relative bg-surface">
+  <!-- Radial gradient background glow -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,_rgba(99,102,241,0.08)_0%,_rgba(99,102,241,0.04)_25%,_transparent_50%)] blur-[40px]"></div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+    <!-- Greeting -->
+    <p class="text-lg text-text-muted font-mono mb-4 opacity-0 animate-fade-in">
+      {{ heroData.greeting }}
+    </p>
+
+    <!-- Name -->
+    <h1 class="text-[clamp(2.5rem,8vw,5rem)] leading-tight font-bold text-text-primary tracking-tight mb-6 opacity-0 animate-fade-in-up [animation-delay:300ms]">
+      {{ heroData.name }}
+    </h1>
+
+    <!-- Role / Tagline -->
+    <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in [animation-delay:450ms]">
+      {{ heroData.tagline }}
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex gap-4 justify-center flex-wrap opacity-0 animate-fade-in [animation-delay:600ms]">
+      <button 
+        (click)="handleButtonClick(heroData.buttons.primary.action, heroData.buttons.primary.url)" 
+        class="px-8 py-3 rounded-lg bg-accent text-surface font-semibold hover:bg-accent-hover transition-all duration-[250ms] hover:scale-105 hover:shadow-lg hover:shadow-accent/25">
+        {{ heroData.buttons.primary.text }}
+      </button>
+      <button 
+        (click)="handleButtonClick(heroData.buttons.secondary.action, heroData.buttons.secondary.url)" 
+        class="px-8 py-3 rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent hover:text-surface transition-all duration-[250ms] hover:scale-105">
+        {{ heroData.buttons.secondary.text }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce-gentle">
+    <svg 
+      class="w-6 h-6 text-text-muted" 
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24">
+      <path 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        stroke-width="2" 
+        d="M19 14l-7 7m0 0l-7-7m7 7V3">
+      </path>
+    </svg>
+  </div>
+</section>

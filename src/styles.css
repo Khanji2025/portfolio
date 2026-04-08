@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  /* ===========================
+     SURFACES (backgrounds)
+     =========================== */
+  --color-surface:         oklch(0.13 0.01 260);  /* deepest background  → bg-surface          */
+  --color-surface-raised:  oklch(0.16 0.01 260);  /* cards, panels       → bg-surface-raised   */
+  --color-surface-overlay: oklch(0.20 0.015 260); /* modals, dropdowns   → bg-surface-overlay  */
+  --color-surface-hover:   oklch(0.23 0.015 260); /* hover states        → bg-surface-hover     */
+
+  /* ===========================
+     TEXT
+     =========================== */
+  --color-text-primary:   oklch(0.95 0.005 260); /* → text-text-primary   */
+  --color-text-secondary: oklch(0.72 0.01 260);  /* → text-text-secondary */
+  --color-text-muted:     oklch(0.50 0.01 260);  /* → text-text-muted     */
+
+  /* ===========================
+     ACCENT — Electric Indigo
+     =========================== */
+  --color-accent:        oklch(0.65 0.25 275);           /* → bg-accent        */
+  --color-accent-hover:  oklch(0.58 0.25 275);           /* → bg-accent-hover  */
+  --color-accent-subtle: oklch(0.65 0.25 275 / 0.15);   /* → bg-accent-subtle */
+
+  /* ===========================
+     SECONDARY ACCENT — Cyan
+     =========================== */
+  --color-secondary:        oklch(0.75 0.15 195);          /* → bg-secondary        */
+  --color-secondary-subtle: oklch(0.75 0.15 195 / 0.12);  /* → bg-secondary-subtle */
+
+  /* ===========================
+     BORDERS
+     =========================== */
+  --color-border:       oklch(0.25 0.01 260);  /* → border-border       */
+  --color-border-hover: oklch(0.35 0.02 275);  /* → border-border-hover */
+
+  /* ===========================
+     STATUS
+     =========================== */
+  --color-success: oklch(0.72 0.19 155);
+  --color-warning: oklch(0.80 0.16 85);
+  --color-error:   oklch(0.65 0.22 25);
+
+  /* ===========================
+     TYPOGRAPHY
+     =========================== */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  1.5rem;
+  --font-size-3xl:  1.875rem;
+  --font-size-4xl:  2.25rem;
+  --font-size-5xl:  3rem;
+  --font-size-6xl:  3.75rem;
+  --font-size-hero: 4.5rem;
+
+  /* ===========================
+     SPACING
+     =========================== */
+  --spacing-section:   6rem;
+  --spacing-container: 1.5rem;
+
+  /* ===========================
+     BORDER RADIUS
+     =========================== */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-2xl:  1.5rem;
+  --radius-full: 9999px;
+
+  /* ===========================
+     SHADOWS
+     =========================== */
+  --shadow-sm:      0 1px 2px oklch(0 0 0 / 0.3);
+  --shadow-md:      0 4px 12px oklch(0 0 0 / 0.4);
+  --shadow-lg:      0 8px 24px oklch(0 0 0 / 0.5);
+  --shadow-glow:    0 0 20px oklch(0.65 0.25 275 / 0.25);
+  --shadow-glow-lg: 0 0 40px oklch(0.65 0.25 275 / 0.35);
+
+  /* ===========================
+     TRANSITIONS
+     =========================== */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===========================
+     ANIMATIONS
+     =========================== */
+  --animate-fade-in: fade-in 600ms ease-out forwards;
+  --animate-fade-in-up: fade-in-up 600ms ease-out forwards;
+  --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
+}
+
+/* Always-dark base — var() is guaranteed to resolve here */
+@layer base {
+  html, body {
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ===========================
+   KEYFRAME ANIMATIONS
+   =========================== */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Tailwind animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 600ms ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 600ms ease-out forwards;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  /* Section pull-up animation - Apple style */
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .section-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Project card stagger animation */
+  .project-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .project-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Skill item stagger animation */
+  .skill-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .skill-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-bounce-gentle,
+  .section-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

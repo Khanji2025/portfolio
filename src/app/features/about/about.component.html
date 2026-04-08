@@ -1,0 +1,75 @@
+<section id="about" class="py-24 bg-surface section-reveal">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section Label -->
+    <h2 class="text-sm font-mono text-accent uppercase tracking-widest mb-12">
+      {{ aboutData.sectionLabel }}
+    </h2>
+
+    <!-- Two Column Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+      <!-- Left Column: Text Content (60% = 3 columns) -->
+      <div 
+        #leftColumn
+        class="lg:col-span-3 space-y-6"
+        [class.opacity-0]="!leftVisible"
+        [class.translate-y-5]="!leftVisible"
+        [class.opacity-100]="leftVisible"
+        [class.translate-y-0]="leftVisible"
+        [class.transition-all]="true"
+        [class.duration-700]="true"
+        [class.ease-out]="true">
+        
+        <p 
+          *ngFor="let paragraph of aboutData.paragraphs"
+          class="text-text-secondary text-lg leading-relaxed">
+          {{ paragraph }}
+        </p>
+      </div>
+
+      <!-- Right Column: Visual Element (40% = 2 columns) - Raised up -->
+      <div 
+        #rightColumn
+        class="lg:col-span-2 lg:-mt-8"
+        [class.opacity-0]="!rightVisible"
+        [class.translate-y-5]="!rightVisible"
+        [class.opacity-100]="rightVisible"
+        [class.translate-y-0]="rightVisible"
+        [class.transition-all]="true"
+        [class.duration-700]="true"
+        [class.ease-out]="true">
+        
+        <!-- Image Visual -->
+        <div *ngIf="aboutData.visualType === 'image' && aboutData.visual.imageUrl" 
+             class="rounded-lg overflow-hidden border border-border shadow-lg">
+          <img 
+            [src]="aboutData.visual.imageUrl" 
+            [alt]="aboutData.visual.imageAlt || 'Profile'" 
+            class="w-full h-auto object-cover">
+        </div>
+
+        <!-- Code Snippet Visual -->
+        <div *ngIf="aboutData.visualType === 'code' && aboutData.visual.code" 
+             class="bg-surface-raised rounded-lg border border-border p-6 font-mono text-sm overflow-x-auto shadow-lg">
+          <div class="flex items-center gap-2 mb-4 pb-4 border-b border-border">
+            <div class="w-3 h-3 rounded-full bg-error"></div>
+            <div class="w-3 h-3 rounded-full bg-warning"></div>
+            <div class="w-3 h-3 rounded-full bg-success"></div>
+            <span class="ml-2 text-text-muted text-xs">{{ aboutData.visual.code.language }}.cs</span>
+          </div>
+          <pre class="text-text-secondary leading-relaxed whitespace-pre-wrap">{{ aboutData.visual.code.snippet }}</pre>
+        </div>
+
+        <!-- Stats Grid Visual -->
+        <div *ngIf="aboutData.visualType === 'stats' && aboutData.visual.stats" 
+             class="grid grid-cols-2 gap-4">
+          <div 
+            *ngFor="let stat of aboutData.visual.stats"
+            class="bg-surface-raised rounded-lg border border-border p-6 text-center hover:border-accent transition-colors duration-250 shadow-lg">
+            <div class="text-3xl font-bold text-accent mb-2">{{ stat.value }}</div>
+            <div class="text-sm text-text-muted">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

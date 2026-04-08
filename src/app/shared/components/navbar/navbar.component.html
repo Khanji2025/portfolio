@@ -1,0 +1,36 @@
+<nav
+  class="fixed top-0 left-0 w-full z-50 transition-all px-6 py-4"
+  [class]="isScrolled()
+    ? 'bg-[rgba(10,10,15,0.8)] backdrop-blur-xl border-b border-border'
+    : 'bg-surface border-b border-transparent'">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="text-[length:var(--font-size-2xl)] font-bold text-accent tracking-tighter hover:opacity-80 transition-opacity px-2 py-1">
+      AK.
+    </a>
+
+    <!-- Nav Links -->
+    <ul class="hidden md:flex items-center gap-1">
+      @for (link of navLinks; track link.name) {
+        <li>
+          <a
+            [href]="link.href"
+            class="text-text-secondary hover:text-accent font-medium text-[length:var(--font-size-sm)] transition-colors px-4 py-2 rounded-md hover:bg-surface-hover block"
+          >
+            {{ link.name }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden text-text-primary p-3">
+      <div class="w-6 h-0.5 bg-current mb-1.5 rounded-full"></div>
+      <div class="w-6 h-0.5 bg-current mb-1.5 rounded-full"></div>
+      <div class="w-6 h-0.5 bg-current rounded-full"></div>
+    </button>
+
+  </div>
+</nav>
