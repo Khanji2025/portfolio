@@ -1,4 +1,4 @@
-/0# Portfolio Website
+# Portfolio Website
 
 A modern, minimalist portfolio website built with Angular 19 and Tailwind CSS, featuring Apple-style smooth animations and a fully data-driven architecture.
 
