@@ -1,75 +1,234 @@
-<section id="about" class="py-24 bg-surface section-reveal">
-  <div class="max-w-6xl mx-auto px-6">
-    <!-- Section Label -->
-    <h2 class="text-sm font-mono text-accent uppercase tracking-widest mb-12">
-      {{ aboutData.sectionLabel }}
-    </h2>
+<section id="about" class="py-24 bg-surface relative overflow-hidden section-reveal">
+  <!-- Subtle dark teal background glow -->
+  <div
+    class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-accent/5 rounded-full blur-[160px] pointer-events-none">
+  </div>
 
-    <!-- Two Column Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-      <!-- Left Column: Text Content (60% = 3 columns) -->
-      <div 
-        #leftColumn
-        class="lg:col-span-3 space-y-6"
-        [class.opacity-0]="!leftVisible"
-        [class.translate-y-5]="!leftVisible"
-        [class.opacity-100]="leftVisible"
-        [class.translate-y-0]="leftVisible"
-        [class.transition-all]="true"
-        [class.duration-700]="true"
-        [class.ease-out]="true">
-        
-        <p 
-          *ngFor="let paragraph of aboutData.paragraphs"
-          class="text-text-secondary text-lg leading-relaxed">
-          {{ paragraph }}
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Section Header (Main font: ABOUT ME) -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2
+        class="text-4xl sm:text-6xl font-['WoofieKoofie',sans-serif] text-accent tracking-wider uppercase drop-shadow-md mb-2">
+        ABOUT ME
+      </h2>
+    </div>
+
+    <!-- Grid Container (Directly Over Background - Uniform Alignment) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 items-start">
+
+      <!-- Column 1: Identity & Summary -->
+      <div class="space-y-4">
+        <div class="relative w-full h-64 rounded-2xl overflow-hidden flex items-center justify-center mb-4">
+          <img src="/assets/images/personal_iamge_v2.png" alt="Abdulrahman Tamassili Khanji"
+            class="h-full w-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.4)] transition-transform duration-500 hover:scale-105">
+        </div>
+        <h3 class="text-2xl font-bold text-text-primary mb-1">Abdulrahman Tamassili Khanji</h3>
+        <p class="text-xs font-mono text-accent mb-3 flex items-center gap-2">
+          <span>Full-Stack & Software Engineer</span>
+          <span class="text-text-muted">•</span>
+          <span>Riyadh, KSA</span>
+          <img src="/assets/images/ksa_flag.png" alt="Saudi Arabia Flag"
+            class="w-5 h-auto object-contain shrink-0 inline-block align-middle rounded-xs">
+        </p>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Software Engineer experienced in building production-ready web applications across backend & full-stack
+          development. Passionate about designing secure, scalable REST APIs, microservices, AI RAG integrations, and
+          clean database architectures.
         </p>
       </div>
 
-      <!-- Right Column: Visual Element (40% = 2 columns) - Raised up -->
-      <div 
-        #rightColumn
-        class="lg:col-span-2 lg:-mt-8"
-        [class.opacity-0]="!rightVisible"
-        [class.translate-y-5]="!rightVisible"
-        [class.opacity-100]="rightVisible"
-        [class.translate-y-0]="rightVisible"
-        [class.transition-all]="true"
-        [class.duration-700]="true"
-        [class.ease-out]="true">
-        
-        <!-- Image Visual -->
-        <div *ngIf="aboutData.visualType === 'image' && aboutData.visual.imageUrl" 
-             class="rounded-lg overflow-hidden border border-border shadow-lg">
-          <img 
-            [src]="aboutData.visual.imageUrl" 
-            [alt]="aboutData.visual.imageAlt || 'Profile'" 
-            class="w-full h-auto object-cover">
-        </div>
-
-        <!-- Code Snippet Visual -->
-        <div *ngIf="aboutData.visualType === 'code' && aboutData.visual.code" 
-             class="bg-surface-raised rounded-lg border border-border p-6 font-mono text-sm overflow-x-auto shadow-lg">
-          <div class="flex items-center gap-2 mb-4 pb-4 border-b border-border">
-            <div class="w-3 h-3 rounded-full bg-error"></div>
-            <div class="w-3 h-3 rounded-full bg-warning"></div>
-            <div class="w-3 h-3 rounded-full bg-success"></div>
-            <span class="ml-2 text-text-muted text-xs">{{ aboutData.visual.code.language }}.cs</span>
+      <!-- Column 2: Engineering Mindset & Quantified Impact -->
+      <div class="space-y-6">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-0.5 bg-accent"></span>
+            <h4 class="text-xs font-mono text-accent uppercase tracking-widest">Engineering Mindset</h4>
           </div>
-          <pre class="text-text-secondary leading-relaxed whitespace-pre-wrap">{{ aboutData.visual.code.snippet }}</pre>
+          <h3 class="text-2xl font-bold text-text-primary mb-1">My Passion & Impact</h3>
+          <p class="text-accent text-xs font-mono font-semibold mb-3">Full Stack Systems, AI Integration & Security</p>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">
+            Driven by transforming complex business requirements into high-performance, maintainable software solutions
+            across ASP.NET Core, Python (FastAPI), Node.js, and Angular.
+          </p>
         </div>
 
-        <!-- Stats Grid Visual -->
-        <div *ngIf="aboutData.visualType === 'stats' && aboutData.visual.stats" 
-             class="grid grid-cols-2 gap-4">
-          <div 
-            *ngFor="let stat of aboutData.visual.stats"
-            class="bg-surface-raised rounded-lg border border-border p-6 text-center hover:border-accent transition-colors duration-250 shadow-lg">
-            <div class="text-3xl font-bold text-accent mb-2">{{ stat.value }}</div>
-            <div class="text-sm text-text-muted">{{ stat.label }}</div>
+        <div class="space-y-2.5">
+          <div class="p-2.5 rounded-xl bg-surface-raised/40 border border-border/50 flex items-center justify-between">
+            <span class="text-xs text-text-secondary font-medium flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> 70% Query Latency Cut
+            </span>
+            <span class="text-[11px] font-mono text-accent">PostgreSQL + Redis</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-surface-raised/40 border border-border/50 flex items-center justify-between">
+            <span class="text-xs text-text-secondary font-medium flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent"></span> ~$2,000/mo Abuse Savings
+            </span>
+            <span class="text-[11px] font-mono text-accent">Rate Limiting & Idempotency</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-surface-raised/40 border border-border/50 flex items-center justify-between">
+            <span class="text-xs text-text-secondary font-medium flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-secondary"></span> 20,000+ Active Users Served
+            </span>
+            <span class="text-[11px] font-mono text-secondary">RAG AI + WebSockets</span>
           </div>
         </div>
       </div>
+      <!-- Column 3: Educational Journey & Experience -->
+      <div class="space-y-6">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-0.5 bg-accent"></span>
+            <h4 class="text-xs font-mono text-accent uppercase tracking-widest">Journey & Education</h4>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary mb-2 flex items-center gap-2">
+            <img src="/assets/images/ksa_flag.png" alt="Saudi Arabia Flag"
+              class="w-5 h-auto object-contain shrink-0 inline-block align-middle rounded-xs">
+            <span class="text-text-muted text-sm">➔</span>
+            <svg class="w-5 h-3.5 rounded-xs overflow-hidden shrink-0 inline-block shadow-xs border border-white/20"
+              viewBox="0 0 900 600">
+              <rect width="900" height="600" fill="#ED1C24" />
+              <rect y="150" width="900" height="300" fill="#FFFFFF" />
+              <polygon points="450,170 340,330 400,330 310,400 590,400 500,330 560,330" fill="#00A651" />
+              <rect x="430" y="400" width="40" height="30" fill="#00A651" />
+            </svg>
+            <span class="text-text-muted text-sm">➔</span>
+            <img src="/assets/images/ksa_flag.png" alt="Saudi Arabia Flag"
+              class="w-5 h-auto object-contain shrink-0 inline-block align-middle rounded-xs">
+          </h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-3">
+            Raised in Saudi Arabia, I moved to Lebanon to earn my B.S. in Computer Science at <strong
+              class="font-bold text-text-primary">City University of Lebanon</strong> with a <strong
+              class="font-bold text-accent">GPA 3.8 / 4.0</strong>.
+          </p>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">
+            Worked as Backend Software Engineer at <strong class="font-bold text-text-primary">Nawaah</strong>
+            maintaining 5+ production platforms.
+          </p>
+        </div>
+
+        <!-- 3 Chronological Journey Blocks -->
+        <div class="space-y-2.5">
+          <!-- Stage 1: Raised in Riyadh -->
+          <div class="p-3 rounded-xl bg-surface-raised/40 border border-border/50 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img src="/assets/images/ksa_flag.png" alt="Saudi Arabia Flag"
+                class="w-5 h-auto object-contain shrink-0 inline-block align-middle rounded-xs">
+              <div>
+                <div class="text-xs font-bold text-text-primary">1. Raised in Riyadh</div>
+                <div class="text-[11px] font-mono text-text-muted">Grew up & completed early schooling in KSA</div>
+              </div>
+            </div>
+            <span class="text-[11px] font-mono text-text-muted">Stage 1</span>
+          </div>
+
+          <!-- Stage 2: Moved to Lebanon for University & Worked at Nawaah (US Startup) -->
+          <div class="p-3 rounded-xl bg-surface-raised/40 border border-border/50 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-5 h-3.5 rounded-xs overflow-hidden shrink-0 shadow-xs border border-white/20"
+                viewBox="0 0 900 600">
+                <rect width="900" height="600" fill="#ED1C24" />
+                <rect y="150" width="900" height="300" fill="#FFFFFF" />
+                <polygon points="450,170 340,330 400,330 310,400 590,400 500,330 560,330" fill="#00A651" />
+                <rect x="430" y="400" width="40" height="30" fill="#00A651" />
+              </svg>
+              <div>
+                <div class="text-xs font-bold text-text-primary">2. Moved to Lebanon</div>
+                <div class="text-[11px] font-mono text-text-muted">City Univ (GPA 3.8) • 1 Yr Backend Dev &#64; Nawaah
+                  (US
+                  Startup)</div>
+              </div>
+            </div>
+            <span class="text-[11px] font-mono font-bold text-accent">Stage 2</span>
+          </div>
+
+          <!-- Stage 3: Moved Back to Riyadh -->
+          <div class="p-3 rounded-xl bg-surface-raised/40 border border-border/50 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img src="/assets/images/ksa_flag.png" alt="Saudi Arabia Flag"
+                class="w-5 h-auto object-contain shrink-0 inline-block align-middle rounded-xs">
+              <div>
+                <div class="text-xs font-bold text-text-primary">3. Moved Back to Riyadh</div>
+                <div class="text-[11px] font-mono text-text-muted">Based in Riyadh (Valid Iqama) • Open to positions in
+                  KSA</div>
+              </div>
+            </div>
+            <span
+              class="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Present</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 4: Base Locations -->
+      <div class="space-y-4">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-0.5 bg-accent"></span>
+            <h4 class="text-xs font-mono text-accent uppercase tracking-widest">Location & Bases</h4>
+          </div>
+          <h3 class="text-lg font-bold text-text-primary mb-2 flex items-center gap-2">
+            <span>Riyadh, Saudi Arabia</span>
+            <img src="/assets/images/ksa_flag.png" alt="Saudi Arabia Flag"
+              class="w-5 h-auto object-contain shrink-0 inline-block align-middle rounded-xs">
+          </h3>
+          <p class="text-text-secondary text-xs leading-relaxed mb-3">
+            Primary Base in Riyadh (Valid Iqama). Academic roots in Tripoli, Lebanon.
+          </p>
+          <div class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Available for Global Roles
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 5: Direct Phone & Email -->
+      <div class="space-y-4">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-0.5 bg-accent"></span>
+            <h4 class="text-xs font-mono text-accent uppercase tracking-widest">Phone & Email</h4>
+          </div>
+          <h3 class="text-base font-bold text-text-primary mb-1">+966-55-373-8706</h3>
+          <p class="text-xs font-mono text-text-muted mb-3">a.khanji.2025&#64;gmail.com</p>
+          <div class="flex flex-wrap gap-2">
+            <button (click)="openLink('https://wa.me/966553738706')"
+              class="py-2 px-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 hover:bg-emerald-500 hover:text-surface text-xs font-mono text-emerald-400 transition-all cursor-pointer inline-flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </button>
+            <button (click)="copyPhone('+966-55-373-8706')"
+              class="py-2 px-3 rounded-xl bg-accent/15 border border-accent/30 hover:bg-accent hover:text-surface text-xs font-mono text-accent transition-all cursor-pointer inline-flex items-center gap-1.5">
+              <span>{{ copiedPhone() ? 'Copied!' : 'Copy Phone' }}</span>
+            </button>
+            <button (click)="openLink('mailto:a.khanji.2025@gmail.com')"
+              class="py-2 px-3 rounded-xl bg-surface-raised border border-border hover:border-accent/40 text-xs font-mono text-text-secondary transition-all cursor-pointer inline-flex items-center gap-1.5">
+              <span>Send Email</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 6: LinkedIn Network -->
+      <div class="space-y-4">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-0.5 bg-accent"></span>
+            <h4 class="text-xs font-mono text-accent uppercase tracking-widest">Connect</h4>
+          </div>
+          <h3 class="text-base font-bold text-text-primary mb-1">LinkedIn Network</h3>
+          <p class="text-xs font-mono text-text-muted mb-3">Connect professionally</p>
+          <div class="flex gap-2">
+            <button (click)="openLink('https://www.linkedin.com/in/abdulrahman-tamassili-khanji/')"
+              class="py-2 px-3.5 rounded-xl bg-secondary/15 border border-secondary/30 hover:bg-secondary hover:text-surface text-xs font-mono text-secondary transition-all cursor-pointer inline-flex items-center gap-1.5">
+              <span>LinkedIn Profile</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </section>

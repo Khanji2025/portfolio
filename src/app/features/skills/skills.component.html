@@ -1,47 +1,99 @@
-<section id="skills" class="py-24 bg-surface section-reveal">
-  <div class="max-w-6xl mx-auto px-6">
-    <!-- Section Header -->
-    <div class="mb-16">
-      <h2 class="text-sm font-mono text-accent uppercase tracking-widest mb-3">
-        {{ skillsData.sectionLabel }}
+<section id="skills" class="py-24 bg-surface relative overflow-hidden section-reveal">
+  <!-- Dark Radial Glow -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-accent/5 rounded-full blur-[160px] pointer-events-none">
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Section Header (Matches ABOUT ME style & font: WoofieKoofie) -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2
+        class="text-4xl sm:text-6xl font-['WoofieKoofie',sans-serif] text-accent tracking-wider uppercase drop-shadow-md mb-2">
+        SKILLS
       </h2>
-      <p class="text-xl text-text-secondary">
-        {{ skillsData.sectionSubtitle }}
-      </p>
-      <div class="w-12 h-1 bg-accent mt-4 rounded-full"></div>
     </div>
 
-    <!-- Skills Categories -->
-    <div class="space-y-12">
-      <div *ngFor="let category of skillsData.categories">
-        <!-- Category Label -->
-        <h3 class="text-sm font-mono text-text-muted uppercase tracking-widest mb-6">
-          {{ category.category }}
-        </h3>
+    <!-- Bento Table Grid Outer Container -->
+    <div class="rounded-2xl border border-border/80 bg-[#071311]/90 overflow-hidden shadow-2xl backdrop-blur-xl">
 
-        <!-- Skills Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <!-- Top Table Header Bar -->
+      <div class="border-b border-border/70 bg-surface-raised/40 py-3.5 px-6 text-center">
+        <span class="font-mono text-xs text-accent font-bold uppercase tracking-[0.2em]">
+          SKILLS MATRIX
+        </span>
+      </div>
+
+      <!-- Main Table Grid (Left Sidebar + Right 3-Column Skills Table) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border/60">
+
+        <!-- Left Side Feature Box (spans 4 columns) -->
+        <div
+          class="lg:col-span-4 p-8 sm:p-10 flex flex-col justify-between items-center text-center space-y-8 bg-surface-raised/20">
+          <div class="space-y-3">
+            <h3 class="text-2xl sm:text-3xl font-bold text-text-primary leading-tight">
+              Total control over Full Stack Technologies.
+            </h3>
+            <p class="text-xs font-mono text-text-muted">
+              Production-grade backend architectures, AI RAG pipelines & high-speed interfaces.
+            </p>
+          </div>
+
+          <!-- Code Mockup Card (Terminal window with 200 OK status) -->
           <div
-            *ngFor="let skill of category.skills"
-            class="skill-item flex flex-col items-center gap-3 p-4 rounded-lg bg-surface-raised border border-border opacity-0 translate-y-4 transition-all duration-500 ease-out hover:border-accent/30 hover:shadow-glow group cursor-default"
-            style="transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;">
-            
-            <!-- Icon -->
-            <div class="w-12 h-12 transition-transform duration-300 ease-out group-hover:scale-110">
-              <img 
-                [src]="skill.icon" 
-                [alt]="skill.name + ' icon'" 
-                class="w-full h-full object-contain"
-                [style.filter]="(skill.name === 'GitHub' || skill.name === 'Flask') ? 'invert(1) brightness(2)' : 'none'">
+            class="w-full max-w-xs rounded-xl bg-[#0a1816] border border-border/80 p-4 shadow-xl text-left space-y-3 relative overflow-hidden group hover:border-accent/40 transition-all duration-300">
+            <!-- Window Titlebar Dots -->
+            <div class="flex items-center gap-2 border-b border-border/50 pb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+              <span class="text-[10px] font-mono text-text-muted ml-2">127.0.0.1</span>
             </div>
 
-            <!-- Label -->
-            <span class="text-sm text-text-secondary font-medium text-center group-hover:text-text-primary transition-colors duration-300">
-              {{ skill.name }}
-            </span>
+            <!-- Code content inside window -->
+            <div class="py-4 text-center space-y-1">
+              <div class="text-3xl font-mono font-bold text-accent tracking-widest drop-shadow-md">
+                200 OK
+              </div>
+              <div class="text-[10px] font-mono text-emerald-400">
+                // System Fully Operational
+              </div>
+            </div>
+
+            <div
+              class="flex justify-between items-center text-[10px] font-mono text-text-muted pt-2 border-t border-border/40">
+              <span>LATENCY: &lt;12ms</span>
+              <span class="text-accent font-bold">STATUS: LIVE</span>
+            </div>
           </div>
         </div>
+
+        <!-- Right Side Skills Matrix Table (spans 8 columns) -->
+        <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 divide-x divide-y divide-border/60">
+
+          <!-- Skill Cell Items -->
+          <div *ngFor="let item of matrixSkills"
+            class="p-4 sm:p-5 flex items-center gap-3.5 hover:bg-accent/10 hover:border-accent/30 transition-all duration-300 group cursor-default">
+
+            <!-- Icon -->
+            <div
+              class="w-7 h-7 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <img [src]="item.icon" [alt]="item.name + ' icon'" class="w-full h-full object-contain"
+                [style.filter]="(item.name === 'Git & GitHub' || item.name === 'Flask') ? 'invert(1) brightness(2)' : 'none'">
+            </div>
+
+            <!-- Technology Name -->
+            <span
+              class="text-xs sm:text-sm font-bold text-text-primary group-hover:text-accent transition-colors duration-300">
+              {{ item.name }}
+            </span>
+          </div>
+
+        </div>
+
       </div>
+
     </div>
+
   </div>
 </section>

@@ -2,7 +2,7 @@ import { HeroData } from '../models/hero.model';
 
 export const heroData: HeroData = {
   greeting: "Hi, I'm",
-  name: 'Abdulrahman Khanji',
+  name: 'Abdulrahman Tamassili Khanji',
   tagline: 'Software Engineer · Building scalable, secure full-stack systems',
   buttons: {
     primary: {

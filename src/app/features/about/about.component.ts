@@ -1,7 +1,16 @@
-import { Component, OnInit, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { aboutData } from '../../data/about.data';
 import { AboutData } from '../../models/about.model';
+
+type TabType = 'csharp' | 'sql' | 'json';
+
+interface CodeTab {
+  id: TabType;
+  filename: string;
+  lang: string;
+  content: string;
+}
 
 @Component({
   selector: 'app-about',
@@ -12,12 +21,70 @@ import { AboutData } from '../../models/about.model';
 export class AboutComponent implements OnInit {
   @ViewChild('leftColumn') leftColumn!: ElementRef;
   @ViewChild('rightColumn') rightColumn!: ElementRef;
-  
+
   aboutData: AboutData = aboutData;
   leftVisible = false;
   rightVisible = false;
+  activeTab = signal<TabType>('csharp');
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  codeTabs: CodeTab[] = [
+    {
+      id: 'csharp',
+      filename: 'Engineer.cs',
+      lang: 'C#',
+      content: `public class EngineerProfile
+{
+    public string Name => "Abdulrahman Khanji";
+    public string Role => "Software Engineer";
+    public string[] CoreStack => ["ASP.NET Core", "Angular 19", "PostgreSQL"];
+    public string Focus => "High-Scale Multi-Tenancy & Query Optimization";
+}`
+    },
+    {
+      id: 'sql',
+      filename: 'Optimization.sql',
+      lang: 'SQL',
+      content: `-- Optimized CTE & Row-Level Security Policy
+CREATE POLICY tenant_isolation_policy ON tenant_transactions
+    FOR ALL TO application_user
+    USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
+
+-- 40% Query Latency Improvement via Indexing & CTEs`
+    },
+    {
+      id: 'json',
+      filename: 'SystemMetrics.json',
+      lang: 'JSON',
+      content: `{
+  "uptime": "99.95%",
+  "daily_transactions": "> 1,000",
+  "active_users": "> 30,000",
+  "architecture": "Clean Architecture & CQRS"
+}`
+    }
+  ];
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+
+  copiedPhone = signal(false);
+
+  copyPhone(phone: string): void {
+    navigator.clipboard.writeText(phone);
+    this.copiedPhone.set(true);
+    setTimeout(() => this.copiedPhone.set(false), 2000);
+  }
+
+  openLink(url: string): void {
+    window.open(url, '_blank', 'noopener noreferrer');
+  }
+
+  selectTab(tabId: TabType): void {
+    this.activeTab.set(tabId);
+  }
+
+  getActiveTabContent(): CodeTab {
+    return this.codeTabs.find(t => t.id === this.activeTab()) || this.codeTabs[0];
+  }
 
   ngOnInit(): void {
     this.setupIntersectionObserver();
@@ -28,7 +95,7 @@ export class AboutComponent implements OnInit {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const sections = document.querySelectorAll('.section-reveal');
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

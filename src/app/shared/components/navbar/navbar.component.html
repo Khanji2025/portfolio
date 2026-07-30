@@ -1,36 +1,166 @@
-<nav
-  class="fixed top-0 left-0 w-full z-50 transition-all px-6 py-4"
-  [class]="isScrolled()
-    ? 'bg-[rgba(10,10,15,0.8)] backdrop-blur-xl border-b border-border'
-    : 'bg-surface border-b border-transparent'">
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+
+  <!-- Moving Text Marquee Ticker Bar (Top Header) -->
+  <div class="w-full bg-[#05110f]/90 border-b border-[#249D8F]/20 py-1.5 overflow-hidden select-none backdrop-blur-md">
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-10 text-[11px] font-mono text-[#249D8F] uppercase tracking-widest">
+      
+      <!-- Loop Set 1 -->
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Fullstack Software Engineer
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Backend AI Integration
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Building Scalable Databases
+      </span>
+      <span class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full text-emerald-400 font-bold">
+        <img src="/assets/images/ksa_flag.png" alt="KSA Flag" class="w-4 h-auto object-contain inline-block rounded-2xs">
+        Open to Work
+      </span>
+
+      <!-- Loop Set 2 -->
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Fullstack Software Engineer
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Backend AI Integration
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Building Scalable Databases
+      </span>
+      <span class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full text-emerald-400 font-bold">
+        <img src="/assets/images/ksa_flag.png" alt="KSA Flag" class="w-4 h-auto object-contain inline-block rounded-2xs">
+        Open to Work
+      </span>
+
+      <!-- Loop Set 3 -->
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Fullstack Software Engineer
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Backend AI Integration
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Building Scalable Databases
+      </span>
+      <span class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full text-emerald-400 font-bold">
+        <img src="/assets/images/ksa_flag.png" alt="KSA Flag" class="w-4 h-auto object-contain inline-block rounded-2xs">
+        Open to Work
+      </span>
+
+      <!-- Loop Set 4 -->
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Fullstack Software Engineer
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Backend AI Integration
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="text-accent/60">✦</span> Building Scalable Databases
+      </span>
+      <span class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full text-emerald-400 font-bold">
+        <img src="/assets/images/ksa_flag.png" alt="KSA Flag" class="w-4 h-auto object-contain inline-block rounded-2xs">
+        Open to Work
+      </span>
+
+    </div>
+  </div>
+
+  <!-- Navbar Main Row -->
+  <div
+    class="px-6 py-3 transition-all duration-300"
+    [class]="isScrolled()
+      ? 'bg-[#0a1312]/85 backdrop-blur-xl border-b border-border shadow-lg shadow-black/20'
+      : 'bg-transparent border-b border-transparent'">
 
   <div class="max-w-7xl mx-auto flex items-center justify-between">
 
-    <!-- Logo -->
-    <a href="/" class="text-[length:var(--font-size-2xl)] font-bold text-accent tracking-tighter hover:opacity-80 transition-opacity px-2 py-1">
-      AK.
+    <!-- Brand / Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center font-mono font-bold text-accent group-hover:bg-accent group-hover:text-surface transition-all duration-300 group-hover:shadow-glow">
+        AK
+      </div>
+      <div class="flex flex-col">
+        <span class="text-base font-bold text-text-primary tracking-tight font-sans group-hover:text-accent transition-colors">
+          Abdulrahman<span class="text-accent">.</span>
+        </span>
+        <span class="text-[10px] font-mono text-text-muted flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Software Engineer
+        </span>
+      </div>
     </a>
 
-    <!-- Nav Links -->
-    <ul class="hidden md:flex items-center gap-1">
-      @for (link of navLinks; track link.name) {
-        <li>
-          <a
-            [href]="link.href"
-            class="text-text-secondary hover:text-accent font-medium text-[length:var(--font-size-sm)] transition-colors px-4 py-2 rounded-md hover:bg-surface-hover block"
-          >
-            {{ link.name }}
-          </a>
-        </li>
-      }
-    </ul>
+    <!-- Desktop Nav Links -->
+    <div class="hidden md:flex items-center gap-2">
+      <ul class="flex items-center gap-1 bg-surface-raised/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-border">
+        @for (link of navLinks; track link.name) {
+          <li>
+            <a
+              [href]="link.href"
+              (click)="scrollToSection(link.href, $event)"
+              class="text-text-secondary hover:text-accent font-medium text-sm transition-all px-4 py-1.5 rounded-full hover:bg-accent-subtle block"
+            >
+              {{ link.name }}
+            </a>
+          </li>
+        }
+      </ul>
 
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden text-text-primary p-3">
-      <div class="w-6 h-0.5 bg-current mb-1.5 rounded-full"></div>
-      <div class="w-6 h-0.5 bg-current mb-1.5 rounded-full"></div>
-      <div class="w-6 h-0.5 bg-current rounded-full"></div>
+      <!-- CTA Button -->
+      <a
+        href="#contact"
+        (click)="scrollToSection('#contact', $event)"
+        class="ml-3 px-5 py-2 rounded-full bg-accent text-surface font-semibold text-sm hover:bg-accent-hover transition-all duration-300 shadow-md shadow-accent/20 hover:scale-105"
+      >
+        Let's Connect
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button
+      (click)="toggleMobileMenu()"
+      class="md:hidden text-text-primary p-2.5 rounded-lg bg-surface-raised border border-border hover:border-accent/40 transition-colors"
+      aria-label="Toggle menu">
+      <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        @if (!mobileMenuOpen()) {
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        } @else {
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        }
+      </svg>
     </button>
 
   </div>
+
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  @if (mobileMenuOpen()) {
+    <div class="md:hidden mt-3 p-4 rounded-2xl bg-surface-raised border border-border backdrop-blur-2xl animate-fade-in-up">
+      <ul class="flex flex-col gap-2">
+        @for (link of navLinks; track link.name) {
+          <li>
+            <a
+              [href]="link.href"
+              (click)="scrollToSection(link.href, $event)"
+              class="text-text-secondary hover:text-accent hover:bg-accent-subtle font-medium text-base transition-colors px-4 py-2.5 rounded-xl block"
+            >
+              {{ link.name }}
+            </a>
+          </li>
+        }
+        <li class="pt-2 border-t border-border">
+          <a
+            href="#contact"
+            (click)="scrollToSection('#contact', $event)"
+            class="w-full text-center px-5 py-3 rounded-xl bg-accent text-surface font-semibold text-sm hover:bg-accent-hover transition-all block shadow-glow"
+          >
+            Let's Connect
+          </a>
+        </li>
+      </ul>
+    </div>
+  }
 </nav>

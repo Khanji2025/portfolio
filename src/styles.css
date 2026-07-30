@@ -1,89 +1,112 @@
+@font-face {
+  font-family: 'WoofieKoofie';
+  src: url('/assets/fonts/woofie-koofie-personal-use.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import "tailwindcss";
 
 @theme {
   /* ===========================
-     SURFACES (backgrounds)
+     SURFACES (Teal-tinted Dark Mode)
      =========================== */
-  --color-surface:         oklch(0.13 0.01 260);  /* deepest background  → bg-surface          */
-  --color-surface-raised:  oklch(0.16 0.01 260);  /* cards, panels       → bg-surface-raised   */
-  --color-surface-overlay: oklch(0.20 0.015 260); /* modals, dropdowns   → bg-surface-overlay  */
-  --color-surface-hover:   oklch(0.23 0.015 260); /* hover states        → bg-surface-hover     */
+  --color-surface: #0b211e;
+  /* dark teal background               → bg-surface          */
+  --color-surface-raised: #132f2b;
+  /* cards, panels                      → bg-surface-raised   */
+  --color-surface-overlay: #193d38;
+  /* modals, dropdowns                  → bg-surface-overlay  */
+  --color-surface-hover: #1f4b45;
+  /* hover states                       → bg-surface-hover     */
 
   /* ===========================
      TEXT
      =========================== */
-  --color-text-primary:   oklch(0.95 0.005 260); /* → text-text-primary   */
-  --color-text-secondary: oklch(0.72 0.01 260);  /* → text-text-secondary */
-  --color-text-muted:     oklch(0.50 0.01 260);  /* → text-text-muted     */
+  --color-text-primary: #f0fdfa;
+  /* crisp cyan-white text               → text-text-primary   */
+  --color-text-secondary: #99f6e4;
+  /* vibrant soft teal text              → text-text-secondary */
+  --color-text-muted: #5eead4;
+  /* muted teal text                     → text-text-muted     */
 
   /* ===========================
-     ACCENT — Electric Indigo
+     PRIMARY ACCENT — Teal #249D8F
      =========================== */
-  --color-accent:        oklch(0.65 0.25 275);           /* → bg-accent        */
-  --color-accent-hover:  oklch(0.58 0.25 275);           /* → bg-accent-hover  */
-  --color-accent-subtle: oklch(0.65 0.25 275 / 0.15);   /* → bg-accent-subtle */
+  --color-accent: #249D8F;
+  /* primary teal brand color   → bg-accent        */
+  --color-accent-hover: #1b7a6f;
+  /* hover teal                 → bg-accent-hover  */
+  --color-accent-subtle: rgba(36, 157, 143, 0.15);
+  /* subtle teal badge/bg       → bg-accent-subtle */
 
   /* ===========================
-     SECONDARY ACCENT — Cyan
+     SECONDARY ACCENT — Coral / Cyan Contrast
      =========================== */
-  --color-secondary:        oklch(0.75 0.15 195);          /* → bg-secondary        */
-  --color-secondary-subtle: oklch(0.75 0.15 195 / 0.12);  /* → bg-secondary-subtle */
+  --color-secondary: #2ec4b6;
+  /* bright cyan accent         → bg-secondary        */
+  --color-secondary-subtle: rgba(46, 196, 182, 0.15);
+  /* subtle secondary bg       → bg-secondary-subtle */
+  --color-highlight: #e76f51;
+  /* warm coral accent tag      → bg-highlight        */
 
   /* ===========================
      BORDERS
      =========================== */
-  --color-border:       oklch(0.25 0.01 260);  /* → border-border       */
-  --color-border-hover: oklch(0.35 0.02 275);  /* → border-border-hover */
+  --color-border: #183430;
+  /* subtle teal border                 → border-border       */
+  --color-border-hover: #249D8F;
+  /* glowing teal border on hover       → border-border-hover */
 
   /* ===========================
      STATUS
      =========================== */
-  --color-success: oklch(0.72 0.19 155);
-  --color-warning: oklch(0.80 0.16 85);
-  --color-error:   oklch(0.65 0.22 25);
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
   /* ===========================
      TYPOGRAPHY
      =========================== */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --font-size-xs:   0.75rem;
-  --font-size-sm:   0.875rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
-  --font-size-lg:   1.125rem;
-  --font-size-xl:   1.25rem;
-  --font-size-2xl:  1.5rem;
-  --font-size-3xl:  1.875rem;
-  --font-size-4xl:  2.25rem;
-  --font-size-5xl:  3rem;
-  --font-size-6xl:  3.75rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
   --font-size-hero: 4.5rem;
 
   /* ===========================
      SPACING
      =========================== */
-  --spacing-section:   6rem;
+  --spacing-section: 6rem;
   --spacing-container: 1.5rem;
 
   /* ===========================
      BORDER RADIUS
      =========================== */
-  --radius-sm:   0.375rem;
-  --radius-md:   0.5rem;
-  --radius-lg:   0.75rem;
-  --radius-xl:   1rem;
-  --radius-2xl:  1.5rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
   --radius-full: 9999px;
 
   /* ===========================
-     SHADOWS
+     SHADOWS & GLOWS
      =========================== */
-  --shadow-sm:      0 1px 2px oklch(0 0 0 / 0.3);
-  --shadow-md:      0 4px 12px oklch(0 0 0 / 0.4);
-  --shadow-lg:      0 8px 24px oklch(0 0 0 / 0.5);
-  --shadow-glow:    0 0 20px oklch(0.65 0.25 275 / 0.25);
-  --shadow-glow-lg: 0 0 40px oklch(0.65 0.25 275 / 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 25px rgba(36, 157, 143, 0.35);
+  --shadow-glow-lg: 0 0 50px rgba(36, 157, 143, 0.5);
 
   /* ===========================
      TRANSITIONS
@@ -99,9 +122,15 @@
   --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
 }
 
-/* Always-dark base — var() is guaranteed to resolve here */
-@layer base {
-  html, body {
+@layer utilities {
+  .bg-custom-pattern {
+    background-color: #0b211e;
+    background-image: url('/assets/images/patterns/hero-pattern.svg');
+    background-repeat: repeat;
+  }
+
+  html,
+  body {
     background-color: var(--color-surface);
     color: var(--color-text-primary);
     min-height: 100%;
@@ -117,6 +146,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -127,6 +157,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -134,24 +165,45 @@
 }
 
 @keyframes bounce-gentle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(8px);
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Tailwind animation utilities */
 @layer utilities {
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+  
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
   .animate-fade-in {
     animation: fade-in 600ms ease-out forwards;
   }
-  
+
   .animate-fade-in-up {
     animation: fade-in-up 600ms ease-out forwards;
   }
-  
+
   .animate-bounce-gentle {
     animation: bounce-gentle 2s ease-in-out infinite;
   }
@@ -161,7 +213,7 @@
     opacity: 0;
     transform: translateY(60px) scale(0.98);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .section-reveal.is-visible {
@@ -194,8 +246,36 @@
   }
 }
 
+/* Custom Dark Teal Scrollbars (Global & Horizontal Carousel) */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #061412;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #249D8F;
+  border-radius: 9999px;
+  border: 2px solid #061412;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3acbb8;
+}
+
+/* Firefox Scrollbar Styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #249D8F #061412;
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
+
   .animate-fade-in,
   .animate-fade-in-up,
   .animate-bounce-gentle,

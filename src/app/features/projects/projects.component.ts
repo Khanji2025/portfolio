@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, signal, computed } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { projectsData } from '../../data/projects.data';
 import { ProjectsData, Project } from '../../models/project.model';
@@ -11,8 +11,49 @@ import { ProjectsData, Project } from '../../models/project.model';
 })
 export class ProjectsComponent implements OnInit {
   projectsData: ProjectsData = projectsData;
+  activeFilter = signal<string>('All');
+  selectedProject = signal<Project | null>(null);
+
+  categories = ['All', 'Full-Stack', 'Backend & DB', 'AI & Cloud'];
+
+  filteredProjects = computed(() => {
+    const filter = this.activeFilter();
+    if (filter === 'All') return this.projectsData.projects;
+
+    return this.projectsData.projects.filter(p => {
+      if (filter === 'Full-Stack') return p.techStack.includes('Angular') && p.techStack.includes('ASP.NET Core');
+      if (filter === 'Backend & DB') return p.techStack.includes('PostgreSQL') || p.techStack.includes('Multi-tenancy') || p.techStack.includes('EF Core');
+      if (filter === 'AI & Cloud') return p.techStack.includes('AI/LLM') || p.techStack.includes('Vector Embeddings');
+      return true;
+    });
+  });
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  setFilter(category: string): void {
+    this.activeFilter.set(category);
+    setTimeout(() => this.setupCardStaggerAnimation(), 50);
+  }
+
+  openModal(project: Project): void {
+    this.selectedProject.set(project);
+  }
+
+  closeModal(): void {
+    this.selectedProject.set(null);
+  }
+
+  scrollCarousel(direction: 'left' | 'right'): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const container = document.getElementById('projects-carousel');
+    if (!container) return;
+
+    const scrollAmount = 340;
+    container.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  }
 
   ngOnInit(): void {
     this.setupCardStaggerAnimation();
@@ -29,7 +70,7 @@ export class ProjectsComponent implements OnInit {
           if (entry.isIntersecting) {
             setTimeout(() => {
               entry.target.classList.add('is-visible');
-            }, index * 100); // 100ms stagger delay
+            }, index * 100);
             observer.unobserve(entry.target);
           }
         });
@@ -42,7 +83,8 @@ export class ProjectsComponent implements OnInit {
     }, 100);
   }
 
-  openLink(url?: string): void {
+  openLink(url?: string, event?: Event): void {
+    if (event) event.stopPropagation();
     if (url) {
       window.open(url, '_blank', 'noopener noreferrer');
     }
