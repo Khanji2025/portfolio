@@ -35,31 +35,29 @@ export class AboutComponent implements OnInit {
       content: `public class EngineerProfile
 {
     public string Name => "Abdulrahman Khanji";
-    public string Role => "Software Engineer";
-    public string[] CoreStack => ["ASP.NET Core", "Angular 19", "PostgreSQL"];
-    public string Focus => "High-Scale Multi-Tenancy & Query Optimization";
+    public string Role => "Backend & Cloud Engineer";
+    public string[] CoreStack => ["ASP.NET Core (C#)", "Node.js", "Python", "PostgreSQL", "Docker"];
+    public string Focus => "High-Performance APIs, Query Optimization & RAG AI Systems";
 }`
     },
     {
       id: 'sql',
       filename: 'Optimization.sql',
       lang: 'SQL',
-      content: `-- Optimized CTE & Row-Level Security Policy
-CREATE POLICY tenant_isolation_policy ON tenant_transactions
-    FOR ALL TO application_user
-    USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
+      content: `-- Optimized Recursive CTE & PostgreSQL Indexing
+EXPLAIN ANALYZE SELECT * FROM hierarchical_menus;
 
--- 40% Query Latency Improvement via Indexing & CTEs`
+-- 70% Query Latency Drop (850ms -> 298ms) via Indexing & Redis TTL Caching`
     },
     {
       id: 'json',
       filename: 'SystemMetrics.json',
       lang: 'JSON',
       content: `{
-  "uptime": "99.95%",
-  "daily_transactions": "> 1,000",
-  "active_users": "> 30,000",
-  "architecture": "Clean Architecture & CQRS"
+  "uptime": "99.9%",
+  "active_users": "> 20,000",
+  "abuse_savings": "$2,000+/mo",
+  "architecture": "Clean Architecture & SOLID"
 }`
     }
   ];
